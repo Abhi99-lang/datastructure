@@ -1,0 +1,83 @@
+#include<stdio.h>
+#include<stdlib.h>
+void add(int **p,int **q,int r,int c)
+{
+    int i,j;
+    int **sum=(int**)malloc(r*sizeof(int *));
+    for(i=0;i<c;i++)
+    {
+        *(sum+i)=(int*)malloc(r*sizeof(int));
+    }
+    for(i=0;i<r;i++)
+    {
+        for(j=0;j<c;j++)
+        {
+            *(*(sum+i)+j)=*(*(p+i)+j)+*(*(q+i)+j);
+        }
+    }
+    printf("addition of these two matrix\n");
+    for(i=0;i<r;i++)
+    {
+        for(j=0;j<c;j++)
+        {
+            printf("%d\t",*(*(sum+i)+j));
+        }
+        printf("\n");
+    }
+}
+int main()
+{
+    int i,j,r,c,m,n;
+    printf("enter the row and column of 1st matrix\n");
+    scanf("%d%d",&r,&c);
+    printf("enter the row and column of 2nd matrix\n");
+    scanf("%d%d",&m,&n);
+    int **p=(int**)malloc(r*sizeof(int *));
+    for(i=0;i<c;i++)
+    {
+        *(p+i)=(int*)malloc(r*sizeof(int));
+    }
+    printf("enter the values of 1st matrix\n");
+    for(i=0;i<r;i++)
+    {
+        for(j=0;j<c;j++)
+        {
+            scanf("%d",&*(*(p+i)+j));
+        }
+    }
+    for(i=0;i<r;i++)
+    {
+        for(j=0;j<c;j++)
+        {
+            printf("%d\t",*(*(p+i)+j));
+        }
+        printf("\n");
+    }
+    int **q=(int**)malloc(m*sizeof(int *));
+    for(i=0;i<n;i++)
+    {
+        *(q+i)=(int*)malloc(m*sizeof(int));
+    }
+    printf("enter the values of 2nd matrix\n");
+    for(i=0;i<m;i++)
+    {
+        for(j=0;j<n;j++)
+        {
+            scanf("%d",&*(*(q+i)+j));
+        }
+    }
+    for(i=0;i<m;i++)
+    {
+        for(j=0;j<n;j++)
+        {
+            printf("%d\t",*(*(q+i)+j));
+        }
+        printf("\n");
+    }
+    if(r==m && c==n)
+    add(p,q,r,c);
+    else
+    printf("addition not possible\n");
+    return 0;
+    
+}
